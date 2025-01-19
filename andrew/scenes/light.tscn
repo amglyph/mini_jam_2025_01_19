@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs04fi6i3j3hw"]
+
+[ext_resource type="Texture2D" uid="uid://cr01wdf80c1gt" path="res://andrew/assets/light.png" id="1_pjrv6"]
+[ext_resource type="Script" path="res://andrew/scenes/light.gd" id="1_qvrp7"]
+
+[node name="Light" type="Area2D"]
+script = ExtResource("1_qvrp7")
+
+[node name="LightImage" type="Sprite2D" parent="."]
+texture = ExtResource("1_pjrv6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-93, 0, 92, -92, 92, 92)
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]

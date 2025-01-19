@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="mini_jam_2025_01_19"
+run/main_scene="res://andrew/scenes/level.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="mini_jam_2025_01_19"
 
 [editor]
 
