@@ -36,25 +36,25 @@ position = Vector2(351, 123)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Borders"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D" groups=["walls"]]
 position = Vector2(1204, 328)
 shape = SubResource("RectangleShape2D_1kxqm")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Borders"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2" groups=["walls"]]
 position = Vector2(-57, 324)
 shape = SubResource("RectangleShape2D_j6q6v")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Borders"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3" groups=["walls"]]
 position = Vector2(580, -62)
 shape = SubResource("RectangleShape2D_1puno")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Borders"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4" groups=["walls"]]
 position = Vector2(577.5, 706.5)
 shape = SubResource("RectangleShape2D_n7ru6")
 
@@ -65,12 +65,14 @@ wait_time = 0.1
 autostart = true
 
 [node name="LightBatteryTimer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
-[node name="PulseBatteryTimer" type="Timer" parent="."]
+[node name="MonsterSpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
 autostart = true
 
 [connection signal="monster_killed" from="Monster" to="." method="_on_monster_monster_killed"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="LightBatteryTimer" to="." method="_on_light_battery_timer_timeout"]
-[connection signal="timeout" from="PulseBatteryTimer" to="." method="_on_pulse_battery_timer_timeout"]
+[connection signal="timeout" from="MonsterSpawnTimer" to="." method="_on_monster_spawn_timer_timeout"]
