@@ -7,7 +7,7 @@ func _ready() -> void:
 	$PulseBattery.get("theme_override_styles/background").bg_color = Color.DIM_GRAY
 	
 func update_score(score):
-	$ScoreLabel.text = str(score)
+	$Score.text = str(score)
 
 func update_light_battery_bar(light_battery, light_on_cooldown):
 	$LightBattery.value = light_battery
@@ -19,4 +19,3 @@ func update_light_battery_bar(light_battery, light_on_cooldown):
 	
 func update_pulse_battery_bar(pulse_battery):
 	$PulseBattery.value = pulse_battery
-	

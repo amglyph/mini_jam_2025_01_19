@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbauvrtejo85e"]
+[gd_scene load_steps=11 format=3 uid="uid://cbauvrtejo85e"]
 
 [ext_resource type="Texture2D" uid="uid://c6fjr5vdny86m" path="res://andrew/assets/black.png" id="1_4ak1r"]
 [ext_resource type="Script" path="res://andrew/scenes/level.gd" id="1_ads3o"]
@@ -7,55 +7,59 @@
 [ext_resource type="PackedScene" uid="uid://lcx4uqyr8u4o" path="res://andrew/scenes/hud.tscn" id="5_ku0aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kxqm"]
-size = Vector2(104.5, 689.5)
+size = Vector2(73.25, 1295)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6q6v"]
-size = Vector2(116, 690)
+size = Vector2(73, 1299)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1puno"]
-size = Vector2(1210, 123)
+size = Vector2(2164, 67.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7ru6"]
-size = Vector2(1211, 117)
+size = Vector2(2144.5, 58.5)
+
+[sub_resource type="Curve2D" id="Curve2D_3cgat"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1919, -1, 0, 0, 0, 0, 1919, 1080, 0, 0, 0, 0, 0, 1079, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1)
+}
+point_count = 6
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ads3o")
+monster_scene = ExtResource("4_ax7ef")
 
 [node name="BG" type="Sprite2D" parent="."]
-position = Vector2(578, 327)
-scale = Vector2(4.65625, 2.62891)
+position = Vector2(958, 542.75)
+scale = Vector2(7.625, 4.31446)
 texture = ExtResource("1_4ak1r")
 
 [node name="Player" parent="." instance=ExtResource("1_pww3d")]
 position = Vector2(158, 327)
 
-[node name="Monster" parent="." instance=ExtResource("4_ax7ef")]
-position = Vector2(351, 123)
-
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Borders"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D" groups=["walls"]]
-position = Vector2(1204, 328)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D" groups=["borders"]]
+position = Vector2(1956.38, 543.5)
 shape = SubResource("RectangleShape2D_1kxqm")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Borders"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2" groups=["walls"]]
-position = Vector2(-57, 324)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2" groups=["borders"]]
+position = Vector2(-36.5, 526.5)
 shape = SubResource("RectangleShape2D_j6q6v")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Borders"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3" groups=["walls"]]
-position = Vector2(580, -62)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3" groups=["borders"]]
+position = Vector2(953, -34)
 shape = SubResource("RectangleShape2D_1puno")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Borders"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4" groups=["walls"]]
-position = Vector2(577.5, 706.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4" groups=["borders"]]
+position = Vector2(966.75, 1109.75)
 shape = SubResource("RectangleShape2D_n7ru6")
 
 [node name="HUD" parent="." instance=ExtResource("5_ku0aa")]
@@ -64,15 +68,17 @@ shape = SubResource("RectangleShape2D_n7ru6")
 wait_time = 0.1
 autostart = true
 
-[node name="LightBatteryTimer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
 [node name="MonsterSpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
-[connection signal="monster_killed" from="Monster" to="." method="_on_monster_monster_killed"]
+[node name="MonsterPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3cgat")
+
+[node name="MonsterSpawn" type="PathFollow2D" parent="MonsterPath"]
+position = Vector2(1, 1)
+rotation = -0.00104275
+
+[connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
-[connection signal="timeout" from="LightBatteryTimer" to="." method="_on_light_battery_timer_timeout"]
 [connection signal="timeout" from="MonsterSpawnTimer" to="." method="_on_monster_spawn_timer_timeout"]

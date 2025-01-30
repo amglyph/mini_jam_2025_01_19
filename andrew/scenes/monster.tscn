@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://1nrn3o2kx2w2" path="res://andrew/assets/monster.png" id="2_4712f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8jiq6"]
-radius = 81.0
+radius = 94.0213
 
-[node name="Monster" type="Area2D" groups=["killable"]]
+[node name="Monster" type="CharacterBody2D" groups=["monsters"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0eat4")
 
@@ -14,7 +14,11 @@ script = ExtResource("1_0eat4")
 texture = ExtResource("2_4712f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 9)
+position = Vector2(4, 2)
 shape = SubResource("CircleShape2D_8jiq6")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Area2D" type="Area2D" parent="." groups=["monsters"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(24, 4)
+shape = SubResource("CircleShape2D_8jiq6")
