@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://lcx4uqyr8u4o"]
+[gd_scene load_steps=8 format=3 uid="uid://lcx4uqyr8u4o"]
 
 [ext_resource type="Script" path="res://andrew/scenes/hud.gd" id="1_mis4f"]
+[ext_resource type="Texture2D" uid="uid://dl3k5bqli0suv" path="res://andrew/assets/leftclick.png" id="2_oflic"]
+[ext_resource type="Texture2D" uid="uid://0uhrtsl6qksr" path="res://andrew/assets/rightclick.png" id="3_4cp0b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fy4g"]
 
@@ -62,3 +64,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "GAME OVER!"
+
+[node name="LeftClick" type="Sprite2D" parent="."]
+position = Vector2(226, 18.4)
+scale = Vector2(0.118036, 0.118036)
+texture = ExtResource("2_oflic")
+
+[node name="RightClick" type="Sprite2D" parent="."]
+position = Vector2(226, 50.4)
+scale = Vector2(0.118, 0.118)
+texture = ExtResource("3_4cp0b")
